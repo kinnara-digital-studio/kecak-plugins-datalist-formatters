@@ -17,9 +17,9 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
 
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
-        return ((value instanceof Boolean && (Boolean) value)
+        return (value instanceof Boolean && (Boolean) value)
                 || "true".equalsIgnoreCase(String.valueOf(value))
-                || "yes".equalsIgnoreCase(String.valueOf(value))) ? "&check;" : "&cross;";
+                || "yes".equalsIgnoreCase(String.valueOf(value)) ? "&check;" : "&cross;";
     }
 
     @Override
