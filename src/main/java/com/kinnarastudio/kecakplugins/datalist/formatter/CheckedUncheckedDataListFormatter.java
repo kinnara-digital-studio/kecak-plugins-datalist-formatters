@@ -4,7 +4,6 @@ import org.joget.apps.app.service.AppUtil;
 import org.joget.apps.datalist.model.DataList;
 import org.joget.apps.datalist.model.DataListColumn;
 import org.joget.apps.datalist.model.DataListColumnFormatDefault;
-import org.joget.commons.util.LogUtil;
 import org.joget.plugin.base.PluginManager;
 
 import java.util.ResourceBundle;
@@ -17,9 +16,9 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
 
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
-        return (value instanceof Boolean && (Boolean) value)
+        return (isNegated() ^ ((value instanceof Boolean && (Boolean) value)
                 || "true".equalsIgnoreCase(String.valueOf(value))
-                || "yes".equalsIgnoreCase(String.valueOf(value)) ? "&check;" : "&cross;";
+                || "yes".equalsIgnoreCase(String.valueOf(value)))) ? "&check;" : "&cross;";
     }
 
     @Override
@@ -53,5 +52,9 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
     @Override
     public String getPropertyOptions() {
         return AppUtil.readPluginResource(getClass().getName(), "/properties/CheckedUncheckedDataListFormatter.json", null, false, "/messages/CheckedUncheckedDataListFormatter");
+    }
+
+    protected boolean isNegated() {
+        return "true".equalsIgnoreCase(getPropertyString("negate"));
     }
 }
