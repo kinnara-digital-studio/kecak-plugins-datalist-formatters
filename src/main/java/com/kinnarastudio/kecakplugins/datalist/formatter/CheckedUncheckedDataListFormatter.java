@@ -12,13 +12,15 @@ import java.util.ResourceBundle;
  * Display value as check and uncheck box
  */
 public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefault {
+    public final static String TRUE_SYMBOL = "&check;";
+    public final static String FALSE_SYMBOL = "&cross;";
     public final static String LABEL = "Checked / Unchecked";
 
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
         return (isNegated() ^ ((value instanceof Boolean && (Boolean) value)
                 || "true".equalsIgnoreCase(String.valueOf(value))
-                || "yes".equalsIgnoreCase(String.valueOf(value)))) ? "&check;" : "&cross;";
+                || "yes".equalsIgnoreCase(String.valueOf(value)))) ? getTrueSymbol() : getFalseSymbol();
     }
 
     @Override
@@ -51,7 +53,19 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
 
     @Override
     public String getPropertyOptions() {
-        return AppUtil.readPluginResource(getClass().getName(), "/properties/CheckedUncheckedDataListFormatter.json", null, false, "/messages/CheckedUncheckedDataListFormatter");
+        return AppUtil.readPluginResource(getClass().getName(), "/properties/CheckedUncheckedDataListFormatter.json", new String[] {TRUE_SYMBOL, FALSE_SYMBOL}, false, "/messages/CheckedUncheckedDataListFormatter");
+    }
+
+    protected String getTrueSymbol() {
+        return ifEmpty(getPropertyString("trueSymbol"), FALSE_SYMBOL);
+    }
+
+    protected String getFalseSymbol() {
+        return ifEmpty(getPropertyString("falseSymbol"), FALSE_SYMBOL);
+    }
+
+    protected String ifEmpty(String value, String failover) {
+        return value == null || value.isEmpty() ? failover : value;
     }
 
     protected boolean isNegated() {

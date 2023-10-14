@@ -3,15 +3,18 @@
     "title": "@@checkedUncheckedDataListFormatter.title@@",
     "properties" : [
       {
-        "name" : "negate",
-        "label" : "@@checkedUncheckedDataListFormatter.negate@@",
-        "type" : "checkbox",
-        "options" : [
-          {
-            "value" : "true",
-            "label" : ""
-          }
-        ]
+        "name" : "trueSymbol",
+        "label" : "@@checkedUncheckedDataListFormatter.trueSymbol@@",
+        "type" : "textfield",
+        "required": "true",
+        "value": "%s"
+      },
+      {
+        "name" : "falseSymbol",
+        "label" : "@@checkedUncheckedDataListFormatter.falseSymbol@@",
+        "type" : "textfield",
+        "required": "true",
+        "value": "%s"
       }
     ]
   }
