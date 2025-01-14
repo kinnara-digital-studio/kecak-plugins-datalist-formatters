@@ -18,9 +18,11 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
 
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
+        final String strValue = String.valueOf(value);
         return (isNegated() ^ ((value instanceof Boolean && (Boolean) value)
-                || "true".equalsIgnoreCase(String.valueOf(value))
-                || "yes".equalsIgnoreCase(String.valueOf(value)))) ? getTrueSymbol() : getFalseSymbol();
+                || "true".equalsIgnoreCase(strValue)
+                || "yes".equalsIgnoreCase(strValue)
+                || "y".equalsIgnoreCase(strValue))) ? getTrueSymbol() : getFalseSymbol();
     }
 
     @Override
@@ -53,7 +55,7 @@ public class CheckedUncheckedDataListFormatter extends DataListColumnFormatDefau
 
     @Override
     public String getPropertyOptions() {
-        return AppUtil.readPluginResource(getClass().getName(), "/properties/CheckedUncheckedDataListFormatter.json", new String[] {TRUE_SYMBOL, FALSE_SYMBOL}, false, "/messages/CheckedUncheckedDataListFormatter");
+        return AppUtil.readPluginResource(getClass().getName(), "/properties/CheckedUncheckedDataListFormatter.json", new String[]{TRUE_SYMBOL, FALSE_SYMBOL}, false, "/messages/CheckedUncheckedDataListFormatter");
     }
 
     protected String getTrueSymbol() {
