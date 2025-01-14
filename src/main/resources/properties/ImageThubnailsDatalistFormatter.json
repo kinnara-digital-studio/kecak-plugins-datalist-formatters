@@ -1,0 +1,21 @@
+[
+    {
+      "title": "@@ImageThubnailsDatalistFormatter.title@@",
+      "properties" : [
+        {
+          "name" : "trueSymbol",
+          "label" : "@@ImageThubnailsDatalistFormatter.trueSymbol@@",
+          "type" : "textfield",
+          "required": "true",
+          "value": "%s"
+        },
+        {
+          "name" : "falseSymbol",
+          "label" : "@@ImageThubnailsDatalistFormatter.falseSymbol@@",
+          "type" : "textfield",
+          "required": "true",
+          "value": "%s"
+        }
+      ]
+    }
+  ]
