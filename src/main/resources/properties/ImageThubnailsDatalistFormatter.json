@@ -1,14 +1,37 @@
 [
-    {
-      "title": "@@ImageThumbnailsDatalistFormatter.title@@",
-      "properties" : [
-        {
-          "name" : "formDefId",
-          "label": "@@ImageThumbnailsDatalistFormatter.formDefId@@",
-          "type" : "selectbox",
-          "required" : "true",
-          "options_ajax" : "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/forms/options"
-        }
-      ]
-    }
-  ]
+  {
+    "title": "@@ImageThumbnailsDatalistFormatter.title@@",
+    "properties": [
+      {
+        "name": "formDefId",
+        "label": "@@ImageThumbnailsDatalistFormatter.formDefId@@",
+        "type": "selectbox",
+        "required": "true",
+        "options_ajax": "[CONTEXT_PATH]/web/json/console/app[APP_PATH]/forms/options"
+      },
+      {
+        "name": "fieldId",
+        "label": "@@ImageThumbnailsDatalistFormatter.fieldId@@",
+        "type": "textfield"
+      },
+      {
+        "label": "@@ImageThumbnailsDatalistFormatter.ui@@",
+        "type": "header"
+      },
+      {
+        "name": "height",
+        "label": "@@ImageThumbnailsDatalistFormatter.height@@",
+        "type": "textfield",
+        "value": "50",
+        "required": "true"
+      },
+      {
+        "name": "width",
+        "label": "@@ImageThumbnailsDatalistFormatter.width@@",
+        "type": "textfield",
+        "value": "50",
+        "required": "true"
+      }
+    ]
+  }
+]
