@@ -9,11 +9,11 @@ import org.joget.apps.datalist.model.DataListColumnFormatDefault;
 import org.joget.plugin.base.PluginManager;
 
 public class ImageThubnailsDatalistFormatter extends DataListColumnFormatDefault{
-    public final static String LABEL = "Checked / Unchecked";
+    public final static String LABEL = "Image Thumbnails";
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'format'");
+        return "<img src=\"https://placehold.co/50x30?text=Gambarna+Ieiu&font=roboto\" style=\"width:100px;height:100px;\"/>";
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Activator implements BundleActivator {
 
         //Register plugin here
         registrationList.add(context.registerService(CheckedUncheckedDataListFormatter.class.getName(), new CheckedUncheckedDataListFormatter(), null));
+        registrationList.add(context.registerService(ImageThubnailsDatalistFormatter.class.getName(), new ImageThubnailsDatalistFormatter(), null));
     }
 
     public void stop(BundleContext context) {
