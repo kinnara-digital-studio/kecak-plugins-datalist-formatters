@@ -1,59 +1,72 @@
 package com.kinnarastudio.kecakplugins.datalist.formatter;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import org.joget.apps.app.model.AppDefinition;
+import org.joget.apps.app.service.AppService;
 import org.joget.apps.app.service.AppUtil;
 import org.joget.apps.datalist.model.DataList;
 import org.joget.apps.datalist.model.DataListColumn;
 import org.joget.apps.datalist.model.DataListColumnFormatDefault;
+import org.joget.apps.form.model.Form;
 import org.joget.plugin.base.PluginManager;
 
-public class ImageThubnailsDatalistFormatter extends DataListColumnFormatDefault{
-    public final static String LABEL = "Image Thumbnails";
+public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefault{
+    public final static String LABEL = "Image Thumbnails Formatter";
+
     @Override
     public String format(DataList dataList, DataListColumn column, Object row, Object value) {
-        // TODO Auto-generated method stub
-        return "<img src=\"https://placehold.co/50x30?text=Gambarna+Ieiu&font=roboto\" style=\"width:100px;height:100px;\"/>";
+        final AppDefinition appDefinition = AppUtil.getCurrentAppDefinition();
+        final String formDefId = getFormDefId();
+        final String primaryKeyValue = ((Map<String, String>)row).get("id");
+        return Optional.of(value)
+                .map(String::valueOf)
+                .map(s -> s.split(";"))
+                .stream()
+                .flatMap(Arrays::stream)
+                .map(filename -> String.format("<img src='/client/app/%s/%d/form/download/%s/%s/%s' style='width:100px;height:100px;'/>", appDefinition.getAppId(), appDefinition.getVersion(), formDefId, primaryKeyValue, filename))
+                .collect(Collectors.joining(" "));
     }
 
     @Override
     public String getClassName() {
-        // TODO Auto-generated method stub
         return getClass().getName();
     }
 
     @Override
     public String getLabel() {
-        // TODO Auto-generated method stub
        return " Image Thumbnails Datalist Formatter";
     }
 
     @Override
     public String getPropertyOptions() {
-        // TODO Auto-generated method stub
         return AppUtil.readPluginResource(getClass().getName(), "/properties/ImageThubnailsDatalistFormatter.json", new String[] {}, false, "/messages/ImageThubnailsDatalistFormatter");
        
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
         return getClass().getPackage().getImplementationTitle();
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        return getClassName();
+        return LABEL;
     }
 
     @Override
     public String getVersion() {
-        // TODO Auto-generated method stub
         PluginManager pluginManager = (PluginManager) AppUtil.getApplicationContext().getBean("pluginManager");
         ResourceBundle resourceBundle = pluginManager.getPluginMessageBundle(getClassName(), "/messages/BuildNumber");
         String buildNumber = resourceBundle.getString("buildNumber");
         return buildNumber;
     }
 
+    protected String getFormDefId() {
+        return getPropertyString("formDefId");
+    }
 }
