@@ -1,0 +1,81 @@
+[
+  {
+    title : '@@pendingAssignmentFormatter.title@@',
+    properties : [
+      {
+        name : 'fieldName',
+        label : '@@pendingAssignmentFormatter.fieldName@@',
+        type : 'selectbox',
+        value : 'activityName',
+        options : [
+          {
+            value : 'activityId',
+            label : '@@pendingAssignmentFormatter.activityId@@'
+          },
+          {
+            value : 'activityName',
+            label : '@@pendingAssignmentFormatter.activityName@@'
+          },
+          {
+            value : 'processId',
+            label : '@@pendingAssignmentFormatter.processId@@'
+          },
+          {
+            value : 'processName',
+            label : '@@pendingAssignmentFormatter.processName@@'
+          },
+          {
+            value : 'processVersion',
+            label : '@@pendingAssignmentFormatter.processVersion@@'
+          },
+          {
+            value : 'pendingUsername',
+            label : '@@pendingAssignmentFormatter.pendingUsername@@'
+          },
+          {
+            value : 'pendingUserFullname',
+            label : '@@pendingAssignmentFormatter.pendingUserFullname@@'
+          },
+          {
+            value : 'status',
+            label : '@@pendingAssignmentFormatter.status@@'
+          }
+        ]
+      },
+      {
+        name : 'onlyShowFirst',
+        label : '@@pendingAssignmentFormatter.onlyShowFirst@@',
+        type : 'checkbox',
+        value : 'false',
+        options : [{
+          value : 'true',
+          label : ''
+        }]
+      },
+      {
+        name : 'labelCompleted',
+        label : '@@pendingAssignmentFormatter.labelCompleted@@',
+        type : 'textfield',
+        desc : '@@pendingAssignmentFormatter.labelCompleted.desc@@',
+        control_field: 'fieldName',
+        control_value : 'status'
+      },
+      {
+        name : 'labelWaiting',
+        label : '@@pendingAssignmentFormatter.labelWaiting@@',
+        type : 'textfield',
+        desc : '@@pendingAssignmentFormatter.labelWaiting.desc@@',
+        control_field: 'fieldName',
+        control_value : 'status'
+      },
+      {
+        name : 'labelAborted',
+        label : '@@pendingAssignmentFormatter.labelAborted@@',
+        type : 'textfield',
+        desc : '@@pendingAssignmentFormatter.labelAborted.desc@@',
+        control_field: 'fieldName',
+        control_value : 'status'
+      }
+    ]
+  }
+]
