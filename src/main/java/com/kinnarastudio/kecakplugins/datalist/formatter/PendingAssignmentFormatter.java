@@ -31,10 +31,11 @@ import java.util.stream.Stream;
  * Get status of current assignment
  */
 public class PendingAssignmentFormatter extends DataListColumnFormatDefault {
+    public final static String LABEL = "Pending Assignment Formatter";
 
     @Override
     public String getName() {
-        return getLabel() + getVersion();
+        return LABEL;
     }
 
     @Override
@@ -155,7 +156,7 @@ public class PendingAssignmentFormatter extends DataListColumnFormatDefault {
 
     @Override
     public String getLabel() {
-        return "Pending Assignment Formatter";
+        return LABEL;
     }
 
     @Override
