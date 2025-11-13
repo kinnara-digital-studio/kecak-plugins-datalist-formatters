@@ -1,6 +1,9 @@
 <#list links as item>
-    <a href="javascript:void(0);" class="zoom-trigger" data-src="${item}" data-filename="${item?index}">
-        <img src="${item}" class="zoom-image" style="width:${width!50}px;height:${height!50}px;" alt="imageThumb" />
+    <#assign thumbnail = item['thumbnail'] >
+    <#assign fullsize = item['fullsize'] >
+
+    <a href="javascript:void(0);" class="zoom-trigger" data-thumbnail="${thumbnail}" data-fullsize="${fullsize}" data-filename="${item?index}">
+        <img src="${thumbnail}" class="zoom-image" style="width:${width!50}px;height:${height!50}px;" alt="imageThumb" />
     </a>
 </#list>
 <script>
@@ -14,7 +17,7 @@ $(document).ready(function () {
         }
 
         // Get the image source and filename
-        const imgSrc = $(this).data('src');
+        const imgSrc = $(this).data('fullsize');
         const filename = $(this).data('filename');
 
         // Create the modal overlay
