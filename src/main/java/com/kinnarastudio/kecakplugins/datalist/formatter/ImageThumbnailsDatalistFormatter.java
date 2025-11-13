@@ -89,7 +89,7 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
 
     @Override
     public String getPropertyOptions() {
-        return AppUtil.readPluginResource(getClass().getName(), "/properties/ImageThubnailsDatalistFormatter.json", new String[]{}, false, "/messages/ImageThubnailsDatalistFormatter");
+        return AppUtil.readPluginResource(getClass().getName(), "/properties/ImageThumbnailsDatalistFormatter.json", new String[]{}, false, "/messages/ImageThubnailsDatalistFormatter");
 
     }
 
