@@ -31,6 +31,16 @@
         "type": "textfield",
         "value": "50",
         "required": "true"
+      },
+      {
+        "name": "asLink",
+        "label": "As URL Link",
+        "type": "checkbox",
+        "value": "",
+        "options": [{
+          "value": "true",
+          "label": ""
+        }]
       }
     ]
   }

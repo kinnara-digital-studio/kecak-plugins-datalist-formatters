@@ -22,6 +22,7 @@ import org.springframework.context.ApplicationContext;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
@@ -54,18 +55,18 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
         final int width = getWidth();
         final int height = getHeight();
 
+        dataModel.put("asLink", asLink());
+
         final Map<String, String>[] links = Optional.ofNullable(fieldId.isEmpty() ? value : ((Map<?, ?>) row).get(fieldId))
                 .map(String::valueOf)
                 .map(s -> s.split(";"))
                 .stream()
                 .flatMap(Arrays::stream)
                 .filter(Predicate.not(String::isEmpty))
-                .map(filename -> {
-                    return new HashMap<String, String>() {{
-                        put("thumbnail", String.format("/web/json/app/%s/%d/plugin/%s/service?formDefId=%s&primaryKey=%s&filename=%s&width=%d&height=%d", appDefinition.getAppId(), appDefinition.getVersion(), getClassName(), formDefId, primaryKeyValue, filename, width, height));
-                        put("fullsize", String.format("/web/client/app/%s/%d/form/download/%s/%s/%s.", appDefinition.getAppId(), appDefinition.getVersion(), formDefId, primaryKeyValue, filename));
-                    }};
-                })
+                .map(filename -> new HashMap<String, String>() {{
+                    put("thumbnail", String.format("/web/json/app/%s/%d/plugin/%s/service?formDefId=%s&primaryKey=%s&filename=%s&width=%d&height=%d", appDefinition.getAppId(), appDefinition.getVersion(), getClassName(), formDefId, primaryKeyValue, filename, width, height));
+                    put("fullsize", String.format("/web/client/app/%s/%d/form/download/%s/%s/%s.", appDefinition.getAppId(), appDefinition.getVersion(), formDefId, primaryKeyValue, filename));
+                }})
                 .toArray(Map[]::new);
 
         dataModel.put("links", links);
@@ -254,5 +255,9 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
         graphics2D.drawImage(originalImage, 0, 0, width, height, null);
 
         ImageIO.write(thumbImage, "jpeg", out);
+    }
+
+    protected boolean asLink() {
+        return "true".equalsIgnoreCase(getPropertyString("asLink"));
     }
 }

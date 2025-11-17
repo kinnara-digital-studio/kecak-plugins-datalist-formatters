@@ -2,10 +2,15 @@
     <#assign thumbnail = item['thumbnail'] >
     <#assign fullsize = item['fullsize'] >
 
-    <a href="javascript:void(0);" class="zoom-trigger" data-thumbnail="${thumbnail}" data-fullsize="${fullsize}" data-filename="${item?index}">
-        <img src="${thumbnail}" class="zoom-image" style="width:${width!50}px;height:${height!50}px;" alt="imageThumb" />
-    </a>
+    <#if asLink>
+        ${fullsize}
+    <#else>
+        <a href="javascript:void(0);" class="zoom-trigger" data-thumbnail="${thumbnail}" data-fullsize="${fullsize}" data-filename="${item?index}">
+            <img src="${thumbnail}" class="zoom-image" style="width:${width!50}px;height:${height!50}px;" alt="imageThumb" />
+        </a>
+    </#if>
 </#list>
+
 <script>
 $(document).ready(function () {
     $(document).on('click', '.zoom-trigger', function (event) {
