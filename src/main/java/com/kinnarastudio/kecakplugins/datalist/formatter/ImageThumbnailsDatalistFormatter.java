@@ -52,8 +52,8 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
 
         final String primaryKeyValue = String.valueOf(((Map<?, ?>) row).get("id"));
 
-        final int width = getWidth();
-        final int height = getHeight();
+        final Integer width = getWidth();
+        final Integer height = getHeight();
 
         dataModel.put("asLink", asLink());
 
@@ -85,7 +85,7 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
 
     @Override
     public String getLabel() {
-        return " Image Thumbnails Datalist Formatter";
+        return " Image Thumbnails DataList Formatter";
     }
 
     @Override
@@ -257,7 +257,7 @@ public class ImageThumbnailsDatalistFormatter extends DataListColumnFormatDefaul
         ImageIO.write(thumbImage, "jpeg", out);
     }
 
-    protected boolean asLink() {
+    protected Boolean asLink() {
         return "true".equalsIgnoreCase(getPropertyString("asLink"));
     }
 }
